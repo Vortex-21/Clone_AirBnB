@@ -1,0 +1,137 @@
+<%layout("/layouts/boilerplate.ejs")-%>
+<body>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <br>
+      <h3><b>Create New Listing</b></h3>
+      
+      <form method="POST" action="/listings" novalidate class="new-details needs-validation">
+        <div class="mb-3">
+            <label for="title" class="form-label">Enter Title</label>
+            <input
+              type="text"
+              id="title"
+              class="title form-control"
+              name="listing[title]"
+              placeholder="Title"
+              required
+            />
+            <div class="valid-feedback">
+              Looks Good!
+            </div>
+            <div class="invalid-feedback">
+              Please fill out this field!
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label"
+              >Enter Description</label
+            >
+            <textarea
+              name="listing[description]"
+              id="Description"
+              class="form-control"
+              required
+            ></textarea>
+            <div class="valid-feedback">
+              Looks Good!
+            </div>
+            <div class="invalid-feedback">
+              Please fill out this field!
+            </div>
+            
+            <br /><br />
+          </div>
+
+          <div class="mb-3">
+            <label for="imageURL" class="form-label">Enter Image</label>
+            <input
+              type="text"
+              id="imageURL"
+              class="imageURL form-control"
+              name="listing[imageURL]"
+              placeholder="Image"
+            />
+            <div class="valid-feedback">
+              Looks Good!
+            </div>
+            <div class="invalid-feedback">
+              Please fill out this field!
+            </div>
+            <br /><br />
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-4">
+
+              <div class="mb-3">
+                <label for="price" class="form-label">Enter Price</label>
+                <input
+                type="text"
+                id="price"
+                class="price form-control"
+                name="listing[price]"
+                placeholder="Price"
+                required
+                />
+                <div class="valid-feedback">
+                  Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                  Please fill out this field!
+                </div>
+                <br /><br />
+            </div>
+              </div>
+              <div class="col-md-8">
+                <div class="mb-3">
+                  <label for="country" class="form-label">Enter Country</label>
+                  <input
+                    type="text"
+                    class="country form-control"
+                    name="listing[country]"
+                    placeholder="Country"
+                    required
+                  />
+                  <div class="valid-feedback">
+                    Looks Good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Please fill out this field!
+                  </div>
+                  <br /><br />
+                </div>
+
+              </div>
+            
+
+            
+          </div>
+
+          <div class="mb-3">
+            <label for="location" class="form-label">Enter Location</label>
+            <input
+              type="text"
+              id="location"
+              class="location form-control"
+              name="listing[location]"
+              placeholder="Location"
+              required
+            />
+            <div class="valid-feedback">
+              Looks Good!
+            </div>
+            <div class="invalid-feedback">
+              Please fill out this field!
+              <br /><br />
+            </div>
+            <br><br>
+          </div>
+          <button class="btn btn-dark add-btn">Submit</button>
+          <br><br>
+      </form>
+    </div>
+  </div>
+</body>
