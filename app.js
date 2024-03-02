@@ -8,10 +8,13 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js")
 const session = require('express-session')
-const listingRoutes = require('./routes/listing.js')
-const reviewRoutes = require('./routes/review.js')
+const listingRouter = require('./routes/listing.js')
+const reviewRouter = require('./routes/review.js')
+const userRouter = require("./routes/user.js")
 const flash = require('connect-flash')
-
+const passport = require('passport')
+const LocalStrategy = require('passport-local');
+const User = require('./models/user.js')
 const sessionOptions = {
   secret:'mysecretKey',
   resave:false,
@@ -48,6 +51,13 @@ main()
 
 app.use(session(sessionOptions));
 app.use(flash())
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 
 app.use((req,res,next)=>{
   res.locals.successMsg = req.flash("success");
@@ -56,8 +66,21 @@ app.use((req,res,next)=>{
 })
 
 
-app.use('/listings',listingRoutes);
-app.use('/listings/:id/reviews',reviewRoutes)
+app.use('/listings',listingRouter);
+app.use('/listings/:id/reviews',reviewRouter);
+app.use("/",userRouter);
+
+//create Demo User
+app.get("/demoUser",async(req,res)=>{
+  let fakeUser = User({
+    email:"anshumanlaskar1@outlook.com",
+    username:"anshu"
+  });
+
+  let newUser = await User.register(fakeUser,"helloworld");
+  res.send(newUser);
+});
+
 
 //Root
 app.get("/", (req, res) => {
