@@ -78,10 +78,10 @@
             <!-- <li><%=rev.rating%>&#9733;<br><%=rev.comment%></li> -->
             <div class="card review-card col-5 ms-3 mb-3 p-1">
               <div class="card-body">
-                <h5 class="card-title">@<%=rev.author.username%></h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">
+                <h5 class="card-title">@<%=rev.author.username%></h6>
+                <h7 class="card-subtitle mb-2 text-body-secondary">
                   <%=rev.rating%>&#9733;
-                </h6>
+                </h7>
                 <p class="card-text"><%=rev.comment%></p>
                 <form
                   action="/listings/<%=listing._id%>/reviews/<%=rev._id%>?_method=DELETE"

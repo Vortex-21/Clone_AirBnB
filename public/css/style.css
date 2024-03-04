@@ -20,12 +20,11 @@ body{
 }
 .navbar-nav{
     margin-top:1.7rem;
-    /* background-color:#fe424d !important; */
-    background-color: white !important;
     color:white !important;
-    
-    
     border-radius:5px !important;
+}
+.navbar-collapse{
+    background-color: white!important;
 }
 .nav-link{
     margin-left:5px !important;
