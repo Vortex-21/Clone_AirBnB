@@ -134,4 +134,6 @@ body{
 }
 .alert_container{
     text-align: center;
+    overflow: visible;
+  overflow-wrap: break-word;
 }

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-
+const User=require("./user.js")
 const reviewSchema = new mongoose.Schema({
     comment:{
         type:String,
@@ -13,7 +13,12 @@ const reviewSchema = new mongoose.Schema({
     createdAt:{
         type:Date,
         default:Date.now()
+    },
+    author:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:User
     }
+
 });
 
 const Review = mongoose.model('Review',reviewSchema);
