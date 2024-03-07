@@ -5,9 +5,12 @@ module.exports.index = async (req, res) => {
     res.render("listings/index.ejs", { allListings });
 }
 module.exports.create=async (req, res, next) => {
+    let url= req.file.path;
+    let filename=req.file.filename;
     let newListing = new Listing(req.body.listing);
     let userId = req.user._id;
     newListing.owner = userId;
+    newListing.image={url,filename};
     await newListing.save();
     req.flash("success", "Listing Added Successfully!");
     res.redirect("/listings");
