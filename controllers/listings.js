@@ -1,7 +1,6 @@
 const Listing=require("../models/listing.js")
 module.exports.index = async (req, res) => {
     let allListings = await Listing.find();
-    // console.log(typeof(allListings));
     res.render("listings/index.ejs", { allListings });
 }
 module.exports.create=async (req, res, next) => {
@@ -19,11 +18,17 @@ module.exports.create=async (req, res, next) => {
 module.exports.update=async (req, res) => {
     let edittedListing = req.body.listing;
     let { id } = req.params;
-    let result = await Listing.findByIdAndUpdate(
+    let listing = await Listing.findByIdAndUpdate(
       id,
       { ...edittedListing },
       { runValidators: true }
     );
+    if(req.file){
+      let url=req.file.path;
+      let filename=req.file.filename;
+      listing.image={url,filename};
+      await listing.save();
+    }
     req.flash("success", "Listing updated successfully !");
     res.redirect(`/listings/${id}`);
 }
@@ -35,7 +40,9 @@ module.exports.renderUpdateForm=async (req, res) => {
       req.flash("error", "Listing Does not Exist ! ");
       res.redirect("/listings");
     }
-    res.render("listings/editDetails.ejs", { listing });
+    let originalImageUrl = listing.image.url;
+    originalImageUrl = originalImageUrl.replace("/upload","/upload/h_250,w_300");
+    res.render("listings/editDetails.ejs", { listing, originalImageUrl});
 }
 
 module.exports.show=async (req, res) => {

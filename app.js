@@ -74,16 +74,7 @@ app.use('/listings',listingRouter);
 app.use('/listings/:id/reviews',reviewRouter);
 app.use("/",userRouter);
 
-//create Demo User
-app.get("/demoUser",async(req,res)=>{
-  let fakeUser = User({
-    email:"anshumanlaskar1@outlook.com",
-    username:"anshu"
-  });
 
-  let newUser = await User.register(fakeUser,"helloworld");
-  res.send(newUser);
-});
 
 
 //Root
