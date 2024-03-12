@@ -35,8 +35,8 @@
         </form>
       </div>
       <%}%>
-      <hr />
       <%if(currUser){%>
+        <hr />
         <div class="mt-3 mb-3">
         <form
           method="post"
@@ -74,13 +74,14 @@
           <div class="invalid-feedback mb-3">Please add a comment.</div>
           <button class="btn btn-outline-dark">Submit</button>
         </form>
+        <%}%>
         <hr />
-        <div>
-          <%}%>
+        <div class="reviews">
           <%if(!currUser){%>
             <p>Login to add a review!</p>
           <%}%>
-          <h3><b>All Reviews</b></h3>
+          <%if(listing.reviews.length>0){%>
+            <h3><b>All Reviews</b></h3>
           <!-- <ul> -->
           <div class="row">
             <%for(let rev of listing.reviews){%>
@@ -109,8 +110,30 @@
 
             <%}%>
           </div>
-          <!-- </ul> -->
+          <%}%>
         </div>
+        <div class="row col-12 maps">
+          <br>
+          <br>
+          <!-- <hr /> -->
+          <h3>Where you'll be</h3>
+          <div id="map" style="height: 400px; width: 100%;"></div>
+          <script>
+            function initMap() {
+                var mapOptions = {
+                    center: {lat:23.8315, lng: 91.2868},
+                    zoom: 15 // You can adjust the zoom level as needed
+                };
+                var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            }
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GMAP_KEY%>&callback=initMap" async defer></script>
+
+        
+          
+        </div>
+        <br><br>
       </div>
     </div>
   </div>

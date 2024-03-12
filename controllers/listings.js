@@ -1,4 +1,5 @@
 const Listing=require("../models/listing.js")
+const axios=require("axios")
 module.exports.index = async (req, res) => {
     let allListings = await Listing.find();
     res.render("listings/index.ejs", { allListings });
@@ -56,13 +57,14 @@ module.exports.show=async (req, res) => {
       .populate("owner");
     
     
-      // console.log(listing);
+    // let coord = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${process.env.GMAP_KEY}`)
+    // console.log("coord = ",coord.data.results[0].geometry.location.lat);
 
     if (!listing) {
       req.flash("error", "Listing you asked for, does not exist !");
       res.redirect("/listings");
     }
-    res.render("listings/showListingDetails.ejs", { listing });
+    res.render("listings/showListingDetails.ejs", { listing});
 }
 
 module.exports.remove=async (req, res) => {
