@@ -69,7 +69,17 @@ body{
 .listing-card{
     border:none !important;
     margin-bottom:2rem;
-    
+}
+@media only screen and (max-width: 1400px) {
+    .listing-card{
+        width:20rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .listing-card{
+        width:18rem;
+    }
 }
 .card-img-top{
     border-radius:1rem;
@@ -111,7 +121,7 @@ body{
 
 /* show listing details */
 .show-img{
-    height:33vh;
+    height:40vh;
     
 }
 .btns{
@@ -120,6 +130,10 @@ body{
 .show-edit-button{
     background-color:#fe424d !important;
     border:none;
+}
+.listing-card-show{
+    border:none !important;
+    margin-bottom:2rem;
 }
 
 .card{

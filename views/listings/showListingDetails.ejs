@@ -6,11 +6,11 @@
 
   <div class="row">
     <br />
-    <div class="col-8 offset-3">
+    <div id="show-title-div">
       <h1><%=listing.title%></h1>
     </div>
-    <div class="col-6 offset-3">
-      <div class="card listing-card">
+    <div id="show-listing-div">
+      <div class="card listing-card-show">
         <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="..." />
         <div class="card-body">
           <!-- <h5 class="card-title"><%=listing.title%></h5> -->
@@ -136,3 +136,4 @@
 
   <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GMAP_KEY%>&callback=initMap" async defer></script>
 
+  <script src="/js/showResponse.js"></script>
