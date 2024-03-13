@@ -1,5 +1,9 @@
 <%layout("/layouts/boilerplate.ejs")%>
-<body>
+<script>
+   const latitude = "<%=coord.data.results[0].geometry.location.lat%>";
+   const longitude = "<%=coord.data.results[0].geometry.location.lng%>";
+</script>
+
   <div class="row">
     <br />
     <div class="col-8 offset-3">
@@ -118,23 +122,12 @@
           <!-- <hr /> -->
           <h3>Where you'll be</h3>
           <div id="map" style="height: 400px; width: 100%;"></div>
-          <script>
-            function initMap() {
-                var mapOptions = {
-                    center: {lat:23.8315, lng: 91.2868},
-                    zoom: 15 // You can adjust the zoom level as needed
-                };
-                var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-            }
-        </script>
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GMAP_KEY%>&callback=initMap" async defer></script>
-
-        
-          
         </div>
         <br><br>
       </div>
     </div>
   </div>
-</body>
+  <script src="/js/map.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GMAP_KEY%>&callback=initMap" async defer></script>
+
