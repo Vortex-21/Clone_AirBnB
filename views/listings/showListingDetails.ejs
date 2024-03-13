@@ -1,7 +1,7 @@
 <%layout("/layouts/boilerplate.ejs")%>
 <script>
-   const latitude = "<%=coord.data.results[0].geometry.location.lat%>";
-   const longitude = "<%=coord.data.results[0].geometry.location.lng%>";
+   const latitude = "<%=listing.geometry.coordinates[0]%>";
+   const longitude = "<%=listing.geometry.coordinates[1]%>";
 </script>
 
   <div class="row">
@@ -116,18 +116,23 @@
           </div>
           <%}%>
         </div>
-        <div class="row col-12 maps">
+        <%if(listing.geometry.coordinates.length!=0){%>
+          <div class="row col-12 maps">
           <br>
           <br>
           <!-- <hr /> -->
           <h3>Where you'll be</h3>
           <div id="map" style="height: 400px; width: 100%;"></div>
-        </div>
+          </div>
+          <script src="/js/map.js"></script>
+        <%}%>
+        <%if(!listing.geometry.coordinates.length){%>
+          <h4>Map Data currently Unavailable</h4>
+        <%}%>
         <br><br>
       </div>
     </div>
   </div>
-  <script src="/js/map.js"></script>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GMAP_KEY%>&callback=initMap" async defer></script>
 
