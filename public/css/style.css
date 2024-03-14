@@ -15,11 +15,11 @@ body{
 }
 
 .navbar{
-    height:5rem;
+    height:4.5rem;
     background-color:white !important;
 }
 .navbar-nav{
-    margin-top:1.7rem;
+    margin: top 0.6em;
     color:white !important;
     border-radius:5px !important;
 }
