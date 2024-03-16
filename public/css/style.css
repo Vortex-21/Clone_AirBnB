@@ -81,6 +81,14 @@ body{
         width:18rem;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    .listing-card{
+        width:24.5rem;
+    }
+}
+
+
 .card-img-top{
     border-radius:1rem;
     width:100% !important;

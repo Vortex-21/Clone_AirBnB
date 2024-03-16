@@ -3,7 +3,7 @@
 <style>
   #filters {
     display: flex;
-    
+    flex-wrap:wrap;
     align-items:center;
   }
 
@@ -34,65 +34,71 @@
   }
   
 </style>
-<div id="filters">
-  <div class="filter">
-    <i class="fa-solid fa-fire"></i>
-    <p>Trending</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-bed"></i>
-    <p>Rooms</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-umbrella-beach"></i>
-    <p>Beach</p>
-  </div>
-  <div class="filter">
-    <i class="fa-brands fa-fort-awesome"></i>
-    <p>Historical homes</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-campground"></i>
-    <p>Camping</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-person-swimming"></i>
-    <p>Amazing Pools</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-cow"></i>
-    <p>Farms</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-hippo"></i>
-    <p>National parks</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-mountain-city"></i>
-    <p>Iconic cities</p>
-  </div>
-  <div class="filter">
-    <i class="fa-regular fa-snowflake"></i>
-    <p>Arctic</p>
-  </div>
-  <div class="tax-toggle">
-    <div class="form-check-reverse form-switch">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        role="switch"
-        id="flexSwitchCheckDefault"
-      />
-      <label class="form-check-label" for="flexSwitchCheckDefault"
-        >Total after taxes</label
-      >
+
+
+  <div id="filters">
+    <div class="filter">
+      <i class="fa-solid fa-fire"></i>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-bed"></i>
+      <p>Rooms</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-umbrella-beach"></i>
+      <p>Beach</p>
+    </div>
+    <div class="filter">
+      <i class="fa-brands fa-fort-awesome"></i>
+      <p>Historical homes</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-campground"></i>
+      <p>Camping</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>Amazing Pools</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-cow"></i>
+      <p>Farms</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-hippo"></i>
+      <p>National parks</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-mountain-city"></i>
+      <p>Iconic cities</p>
+    </div>
+    <div class="filter">
+      <i class="fa-regular fa-snowflake"></i>
+      <p>Arctic</p>
+    </div>
+    
+    <div id="taxToggle" class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Total after taxes</label
+        >
+      </div>
     </div>
   </div>
-</div>
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+
+
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-2">
   <%for(let listing of allListings){%>
 
-  <a href="/listings/<%=listing._id%>" class="card-link">
+  <a href="/listings/<%=listing._id%>" class="card-link index-listing">
     <div class="card listing-card">
       <img
         src="<%=listing.image.url%>"
@@ -123,7 +129,6 @@
 
 <script>
   let toggleSwitch = document.getElementById("flexSwitchCheckDefault");
-
   toggleSwitch.addEventListener("click",()=>{
     let tax = document.getElementsByClassName("tax-info");
     for(let t of tax){
@@ -134,5 +139,31 @@
         t.style.display = "inline";
       }
     }
+  });
+  
+</script>
+<script>
+  function filtersResponse(){
+    
+    const toggle = document.getElementById("taxToggle");
+    const filters = document.getElementById("filters")
+    if(window.innerWidth<1350){
+      
+      toggle.style.display="none";
+      filters.style.display="none";
+    }
+    else{
+      
+
+      filters.style.display="flex";
+      toggle.style.display="flex";
+    }
+    
+  }
+  document.addEventListener('DOMContentLoaded',()=>{
+    filtersResponse();
+  })
+  window.addEventListener('resize', function() {
+    filtersResponse();
   });
 </script>

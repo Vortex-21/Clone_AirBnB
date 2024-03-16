@@ -1,4 +1,38 @@
 <style>
+  #filters {
+    display: flex;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+
+  .filter {
+    margin-right: 2.5rem;
+    margin-top:1rem;
+    text-align: center;
+    opacity: 0.7;
+  }
+  .filter:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  .filter p {
+    font-size: 0.8rem;
+  }
+  .tax-info{
+    display:none;
+  }
+  .tax-toggle{
+    border: 1px solid rgb(180, 178, 178);
+    border-radius:1rem;
+    padding:1rem;
+    margin-left:5rem;
+    height:3.25rem;
+    display:flex;
+    align-items:center;
+  }
+  
+</style>
+<style>
   .search-btn{
     background-color: #fe424d;
     color:white;
@@ -17,7 +51,7 @@
     padding:0.5rem 3rem 0.5rem 3rem;
   }
   .whole-search{
-    border:2px solid rgb(195, 191, 191);
+    border:2.5px solid rgb(195, 191, 191);
     border-radius:25px!important;
   }
   
@@ -55,10 +89,95 @@
           <%if(currUser){%>
             <a class="nav-link" href="/logout"><b>Log out</b></a>
           <%}%>
+          <a id="offcanvas-button" class="nav-link " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            Filters
+          </a> 
           
         </div>
+        
       </div>
     </div>
   </nav>
+
+
+
+  <!-- Offcanvas! -->
+
+<div class="options">
+  
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Filters</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- <div id="filters"> -->
+        <div class="filter">
+          <i class="fa-solid fa-fire"></i>
+          <p>Trending</p>
+        </div>
+        <div class="filter">
+          <i class="fa-solid fa-bed"></i>
+          <p>Rooms</p>
+        </div>
+        <div class="filter">
+          <i class="fa-solid fa-umbrella-beach"></i>
+          <p>Beach</p>
+        </div>
+        <div class="filter">
+          <i class="fa-brands fa-fort-awesome"></i>
+          <p>Historical homes</p>
+        </div>
+        <div class="filter">
+          <i class="fa-solid fa-campground"></i>
+          <p>Camping</p>
+        </div>
+        <div class="filter">
+          <i class="fa-solid fa-person-swimming"></i>
+          <p>Amazing Pools</p>
+        </div>
+        <div class="filter">
+          <i class="fa-solid fa-cow"></i>
+          <p>Farms</p>
+        </div>
+        <div class="filter">
+          <i class="fa-solid fa-hippo"></i>
+          <p>National parks</p>
+        </div>
+        <div class="filter">
+          <i class="fa-solid fa-mountain-city"></i>
+          <p>Iconic cities</p>
+        </div>
+        <div class="filter">
+          <i class="fa-regular fa-snowflake"></i>
+          <p>Arctic</p>
+        </div>
+        
+      <!-- </div> -->
+      
+    </div>
+  </div>
+</div>
+<!-- Offcanvas-end -->
+
+<script>
+  const filters=()=>{
+    let offcanvasLink = document.getElementById("offcanvas-button");
+    if(window.innerWidth<1350){
+      offcanvasLink.style.display = "inline";
+    }
+    else{
+      offcanvasLink.style.display = "none"; 
+    }
+  }
+  window.addEventListener("resize",()=>{
+    filters();
+  });
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    filters();
+  })
+  
+</script>
 
   
