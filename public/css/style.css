@@ -138,6 +138,7 @@ body{
 .show-edit-button{
     background-color:#fe424d !important;
     border:none;
+    height:2.4rem;
 }
 .listing-card-show{
     border:none !important;
