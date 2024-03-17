@@ -84,10 +84,10 @@ body{
 
 @media only screen and (max-width: 768px) {
     .listing-card{
-        width:24.5rem;
+        width:21.5rem;
+        margin:auto;
     }
 }
-
 
 .card-img-top{
     border-radius:1rem;
